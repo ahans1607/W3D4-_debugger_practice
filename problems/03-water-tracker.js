@@ -1,36 +1,36 @@
 /*
-
 Fix the function `adequateWaterTracker`. `adequateWaterTracker` should return
 true if ALL the the weeks in the calendar array having more days in the week
 that you drank water than you didn't.
-
 For example, in this week, [0, 0, 3, 1, 0, 4, 0], each day represents how many
 cups of water you drank that day. In this example, there were only 3 days where
 you drank at least one cup of water.
-
 A calendar is represented by multiple weeks, 
 [[0, 0, 3, 1, 0, 4, 0], [1, 2, 1, 2, 1, 3, 1]].
-
 If you drank water for at least 4 days of water for every week in the calendar,
 then return true. Otherwise, return false.
-
 */
 
 function adequateWaterTracker(calendar) {
-  let noWater = 0;
-  let water = 0;
+  //let week1;
+  let arr = [];
+
   for (let i = 0; i < calendar.length; i++) {
     const week = calendar[i];
-    for (let j = 0; j < week.length - 1; j++) {
-      const day = calendar[j];
+    let noWater = 0;
+    let water = 0;
+    for (let j = 0; j < week.length; j++) {
+      const day = week[j];
       if (day === 0) {
         noWater++;
       } else {
         water++;
       }
     }
+    //console.log(water + " " + noWater);
+    arr.push(noWater < water);
   }
-  return noWater < water;
+  return arr.every((el) => el);
 }
 
 const calendar1 = [
@@ -53,4 +53,3 @@ const calendar3 = [
 ];
 
 console.log(adequateWaterTracker(calendar3)); // true
-
